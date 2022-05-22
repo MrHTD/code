@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  </head>
+  <body>
+
+    <div class="container mt-3">
+        <div class="row">
+            <div class="col-md-12 col-lg-6">
+                <table>
+                    <thead>
+                        <tr>
+                            <form class="form">
+                                <label>NAME</label>
+                                <input type="text" class="form-control" value="" id="name">
+                                <label>AGE</label>
+                                <input type="text" class="form-control" value="" id="age">
+                                <label>EMAIL</label>
+                                <input type="email" class="form-control" value="" id="email">
+                                <label>PASSWORD</label>
+                                <input type="password" class="form-control" value="" id="pass">
+
+                                <input type="button" class="btn btn-info text-light mt-2" onclick="insert()" value="Insert">
+                                <input type="button" class="btn btn-danger mt-2 mx-5" value="Update" onclick="updateRecord()">
+                            </form>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+            <div class="col-md-12 col-lg-6">
+                <table class="table table-dark table-striped">
+                    <thead>
+                        <tr>
+                            <th>NAME</th>
+                            <th>AGE</th>
+                            <th>EMAIL</th>
+                            <th>PASSWORD</th>
+                            <th>ACTION</th>
+                        </tr>
+                    </thead>
+                    <tbody id="result">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+
+        function insert(){
+            var NAME = document.getElementById("name").value;
+            var AGE = document.getElementById("age").value;
+            var EMAIL = document.getElementById("email").value;
+            var PASS = document.getElementById("pass").value;
+
+            for(i=0;i<=0;i++){
+                document.getElementById("result").innerHTML+=
+                `
+                <tr>
+                    <td>${NAME}</td>
+                    <td>${AGE}</td>
+                    <td>${EMAIL}</td>
+                    <td>${PASS}</td>
+                    <td>
+                        <input type="button" class="btn btn-success" value="Edit" onclick="onEdit(this)">
+                        <input type="button" class="btn btn-danger" value="Delete" onclick="onDelete(this)">
+                    </td>
+                </tr>
+                `
+            }
+
+            var NAME = document.getElementById("name").value="";
+            var AGE = document.getElementById("age").value="";
+            var EMAIL = document.getElementById("email").value="";
+            var PASS = document.getElementById("pass").value="";
+        }
+        
+        function onEdit(td) {
+            selectedRow = td.parentElement.parentElement;
+            document.getElementById("name").value = selectedRow.cells[0].innerHTML;
+            document.getElementById("age").value = selectedRow.cells[1].innerHTML;
+            document.getElementById("email").value = selectedRow.cells[2].innerHTML;
+            document.getElementById("pass").value = selectedRow.cells[3].innerHTML;
+        }
+
+        function updateRecord() {
+            selectedRow.cells[0].innerHTML = formData.name;
+            selectedRow.cells[1].innerHTML = formData.age;
+            selectedRow.cells[2].innerHTML = formData.email;
+            selectedRow.cells[3].innerHTML = formData.email;
+        }
+
+        function onDelete(td){
+        row = td.parentElement.parentElement;
+        document.getElementById("result").deleteRow(row.rowIndex);
+        }
+
+
+    </script>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+  </body>
+</html>

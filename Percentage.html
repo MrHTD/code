@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  </head>
+  <body>
+
+    <div class="container mt-3">
+        <h1 class="text-center">MARK SHEET</h1>
+        <div class="row">
+            <div class="col-12">
+                            <form>
+                                <label>NAME</label>
+                                <input type="text" name="fname" placeholder="Enter Full Name" class="form-control w-50" value="" id="name">
+                                <label>AGE</label>
+                                <input type="text" placeholder="Enter Age" class="form-control w-50" id="age" maxlength="2" onkeypress=" return isNumber(event)">
+                                <label>COMPUTER</label>
+                                <input type="text" placeholder="Enter Marks" class="form-control w-25" id="comp" maxlength="2" onkeypress=" return isNumber(event)">
+                                <label>URDU</label>
+                                <input type="text" placeholder="Enter Marks" class="form-control w-25" id="urdu" maxlength="2" onkeypress=" return isNumber(event)">
+                                <label>MATH</label>
+                                <input type="text" placeholder="Enter Marks" class="form-control w-25" id="math" maxlength="2" onkeypress=" return isNumber(event)">
+                                <label>PHYSICS</label>
+                                <input type="text" placeholder="Enter Marks" class="form-control w-25" id="phy" maxlength="2" onkeypress=" return isNumber(event)">
+                                <label>ENGLISH</label>
+                                <input type="text" placeholder="Enter Marks" class="form-control w-25" id="eng" maxlength="2" onkeypress=" return isNumber(event)" required>
+
+                                <input type="button" value="Insert" class="btn w-50 btn-info text-light my-3" onclick="insert()">
+                            </form>
+            </div>
+            <div class="col-12 mt-2">
+                <table class="table table-dark table-striped table-bordered text-center">
+                    <thead>
+                        <tr>
+                            <th>NAME</th>
+                            <th>AGE</th>
+                            <th>COMPUTER</th>
+                            <th>URDU</th>
+                            <th>MATH</th>
+                            <th>PHYSICS</th>
+                            <th>ENGLISH</th>
+                            <th>TOTAL MARKS / MARKS OBTAINED</th>
+                            <th>PERCENTAGE</th>
+                            <th>GRADE</th>
+                            <th>ACTION</th>
+                        </tr>
+                    </thead>
+                    <tbody id="result">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        function insert(){
+
+            var NAME = document.getElementById("name").value;
+            var AGE = document.getElementById("age").value;
+            var COMP = parseInt(document.getElementById("comp").value);
+            var URDU = parseInt(document.getElementById("urdu").value);
+            var MATH = parseInt(document.getElementById("math").value);
+            var PHYSICS = parseInt(document.getElementById("phy").value);
+            var ENGLISH = parseInt(document.getElementById("eng").value);
+
+            var MARKS = (COMP+URDU+MATH+PHYSICS);
+
+            var percentage = MARKS/400*100;
+            
+            var GRADE = ('');
+
+            
+            for(i=0;i<=0;i++){
+                document.getElementById("result").innerHTML+=
+                `
+                <tr>
+                    <td>${NAME}</td>
+                    <td>${AGE}</td>
+                    <td>${COMP}</td>
+                    <td>${URDU}</td>
+                    <td>${MATH}</td>
+                    <td>${PHYSICS}</td>
+                    <td>${ENGLISH}</td>
+                    <td>500/${MARKS}</td>
+                    <td>${percentage}%</td>
+                    <td>${GRADE}</td>
+                    <td>
+                        <input type="button" class="btn btn-success btn-sm" value="Edit" onclick="onEdit(this)">
+                        <input type="button" class="btn btn-danger btn-sm" value="Delete" onclick="onDelete(this)">
+                    </td>
+                </tr>
+                `
+                }
+                    
+                var NAME = document.getElementById("name").value="";
+                var AGE = document.getElementById("age").value="";
+                var EMAIL = document.getElementById("email").value="";
+                var PASS = document.getElementById("pass").value="";
+                    
+            }
+
+            function onDelete(td){
+            row = td.parentElement.parentElement;
+            document.getElementById("result").deleteRow(row.rowIndex);
+            }
+
+            function isNumber(evt)
+            {
+                evt = (evt) ? evt : window.event;
+                var charCode = (evt.which) ? evt.which : evt.keyCode;
+                if (charCode > 31 && (charCode < 48 || charCode > 57)) {
+                return false;
+            }
+                return true;
+            }
+
+    </script>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+  </body>
+</html>
